@@ -1,10 +1,17 @@
 import React from "react";
+import Contact from "./components/Contact";
+import Header from "./components/Header";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>The App Component</h1>
+      <Header branding="Contact Manager" />
+      <div className="container">
+        <Contact name="John Doe" email="foo@foo.com" phone="555-555-5555" />
+        <Contact name="Karen Smith" email="karen@foo.com" phone="123-555-5555" />
+      </div>
     </div>
   );
 }
