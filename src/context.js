@@ -29,7 +29,7 @@ export class Provider extends Component {
   };
 
   componentDidMount() {
-    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => this.setState({ contacts: res.data }));
+    axios.get("/datasource/users").then((res) => this.setState({ contacts: res.data }));
   }
 
   render() {
