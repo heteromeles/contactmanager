@@ -16,9 +16,6 @@ class Contact extends Component {
   onDeleteClick = (id, dispatch) => {
     console.log("about to delete");
     axios.delete(`/datasource/users/${id}`).then((res) => dispatch({ type: "DELETE_CONTACT", payload: id }));
-    // axios
-    // .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-    // .then((res) => dispatch({ type: "DELETE_CONTACT", payload: id }));
     console.log("did delete");
   };
 
@@ -39,7 +36,7 @@ class Contact extends Component {
                   className="fas fa-times"
                   style={{ cursor: "pointer", float: "right", color: "red" }}
                   onClick={this.onDeleteClick.bind(this, id, dispatch)}
-                 />
+                />
               </h4>
               {showContactInfo ? (
                 <ul className="list-group">
