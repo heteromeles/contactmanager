@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 
@@ -13,10 +14,13 @@ class Contact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   };
 
-  onDeleteClick = (id, dispatch) => {
-    console.log("about to delete");
-    axios.delete(`/datasource/users/${id}`).then((res) => dispatch({ type: "DELETE_CONTACT", payload: id }));
-    console.log("did delete");
+  onDeleteClick = async (id, dispatch) => {
+    try {
+      await axios.delete(`/datasource/users/${id}`);
+    } catch (e) {
+      console.log(e);
+    }
+    dispatch({ type: "DELETE_CONTACT", payload: id });
   };
 
   render() {
@@ -37,6 +41,12 @@ class Contact extends Component {
                   style={{ cursor: "pointer", float: "right", color: "red" }}
                   onClick={this.onDeleteClick.bind(this, id, dispatch)}
                 />
+                <Link to={`contact/edit/${id}`}>
+                  <i
+                    className="fas fa-pencil-alt"
+                    style={{ cursor: "pointer", float: "right", color: "black", marginRight: "1rem" }}
+                  />
+                </Link>
               </h4>
               {showContactInfo ? (
                 <ul className="list-group">
