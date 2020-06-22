@@ -1,32 +1,16 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getContacts } from "../../actions/contactsActions";
 
 class Contacts extends Component {
-  state = {
-    contacts: [
-      {
-        id: 1,
-        name: "John Doe",
-        email: "john@gmail.com",
-        phone: "555-555-5555",
-      },
-      {
-        id: 2,
-        name: "Karen Williams",
-        email: "karen@gmail.com",
-        phone: "444-444-4444",
-      },
-      {
-        id: 3,
-        name: "Henry Johnson",
-        email: "henry@gmail.com",
-        phone: "333-333-333",
-      },
-    ],
-  };
+  componentDidMount() {
+    this.props.getContacts();
+  }
 
   render() {
-    const { contacts } = this.state;
+    const { contacts } = this.props;
     return (
       <React.Fragment>
         <h1 className="display-4 mb-2">
@@ -40,4 +24,19 @@ class Contacts extends Component {
   }
 }
 
-export default Contacts;
+Contacts.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  getContacts: PropTypes.func.isRequired,
+};
+
+// This function has a standard name.
+// It defines how the Redux state should be mapped to component properties.
+const mapStateToProps = (storeState) => ({ contacts: storeState.contactsState.contacts });
+
+// An object of action creators can be passed insted of mapDispatch to auto generate
+// the map of functions to wrapped dispatches of the created actions.
+const actionCreators = {
+  getContacts: getContacts,
+};
+
+export default connect(mapStateToProps, actionCreators)(Contacts);

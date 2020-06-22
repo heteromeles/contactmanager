@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TextInputGroup from "../layout/TextInputGroup";
+import { TextInputGroup } from "../layout/TextInputGroup";
 
 class EditContact extends Component {
   state = {
@@ -55,7 +55,7 @@ class EditContact extends Component {
     const { name, email, phone, errors } = this.state;
 
     return (
-      <div className="card mb-3">
+      <div className="card mt-3 mb-3">
         <div className="card-header">Edit Contact</div>
         <div className="card-body">
           <form onSubmit={this.onSubmit}>

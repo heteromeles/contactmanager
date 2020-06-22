@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-const TextInputGroup = (props) => {
+export const TextInputGroup = (props) => {
   const { label, name, value, placeholder, type, onChange, error } = props;
   return (
     <div className="form-group">
@@ -33,5 +33,3 @@ TextInputGroup.propTypes = {
 TextInputGroup.defaultProps = {
   type: "text",
 };
-
-export default TextInputGroup;
